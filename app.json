@@ -1,0 +1,33 @@
+{
+  "expo": {
+    "name": "react-native-navigation",
+    "slug": "react-native-navigation",
+    "platforms": [
+      "ios",
+      "android",
+      "web"
+    ],
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./src/assets/icon.png",
+    "splash": {
+      "image": "./src/assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "iosBundler"
+    },
+    "android": {
+      "package": "something.com"
+    },
+    "entryPoint": "node_modules/expo/AppEntry.js"
+  }
+}
