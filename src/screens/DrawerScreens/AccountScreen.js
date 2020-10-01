@@ -107,8 +107,11 @@ const AccountScreen = (props) => {
         onPress={() => setLock(!lock)}
       >
         {lock ? (
-          // <Icon name="lock" color={"black"} size={HEIGHT * 0.05} />
-          <EvilIcons name="pencil" size={HEIGHT * 0.05} color="black" />
+          <>
+            <EvilIcons name="pencil" size={HEIGHT * 0.05} color="black" />
+            <Text style={{fontSize:HEIGHT * 0.03}}>Edit</Text>
+
+          </>
         ) : (
           // <EvilIcons name="pencil" size={24} color="black" />
           <Icon name="lock" color={"white"} size={HEIGHT * 0.05} />
