@@ -29,7 +29,7 @@ import _ from "lodash";
 import { connect } from "react-redux";
 
 import * as actions from "../../actions/index";
-import Icon from 'react-native-vector-icons/FontAwesome';
+import Icon from "react-native-vector-icons/FontAwesome";
 import {
   HEIGHT,
   FIELD_NAME_FONT_SIZE,
@@ -42,22 +42,22 @@ import {
   BUTTON_CONTAINER,
   KEYBOARD_AWARE_SCROLL_VIEW_STYLE,
 } from "../../components/Items/";
+import Loader from "../../components/Loader";
 
 import { USERTYPES } from "../../components/Data/";
-
 
 const WelcomeScreen = (props) => {
   const [email, setEmail] = useState("jcasasmail@gmail.com");
   const [password, setPassword] = useState("yCxGRcgJ7C9JdY2");
   const [userType, setUserType] = useState("User");
   const [userModalView, setUserModalView] = useState(false);
-  const [size, setSize] = useState(FIELD_VALUE_FONT_SIZE*1.3);
+  const [size, setSize] = useState(FIELD_VALUE_FONT_SIZE * 1.3);
 
   // REDUX LOGIN FLOW
   const loginWithEmail = async () => {
-    console.log('loginWithEmail()')
-    props.emailLogin({email,password,userType});
-    console.log('emailLogin() complete')
+    console.log("loginWithEmail()");
+    props.emailLogin({ email, password, userType });
+    console.log("emailLogin() complete");
     onAuthComplete(props);
   };
 
@@ -73,7 +73,7 @@ const WelcomeScreen = (props) => {
   //   // snippet of code should resemble componentWillReceiveProps
 
   const onAuthComplete = (props) => {
-    console.log('props.token  :',props.token)
+    console.log("props.token  :", props.token);
     if (props.token) {
       props.navigation.navigate("drawer");
     }
@@ -99,16 +99,15 @@ const WelcomeScreen = (props) => {
   const fadeIn = () => {
     Animated.timing(fadeAnim, {
       toValue: 1,
-      duration: 1900,
+      duration: 3000,
       useNativeDriver: true,
     }).start();
   };
   useEffect(() => {
     fadeIn();
   }, []);
+
   // ANIMATION
-
-
 
   return (
     <SafeAreaView style={GlobalStyles.droidSafeArea}>
@@ -116,73 +115,90 @@ const WelcomeScreen = (props) => {
         resetScrollToCoords={{ x: 0, y: 0 }}
         contentContainerStyle={KEYBOARD_AWARE_SCROLL_VIEW_STYLE}
         showsVerticalScrollIndicator={false}
+        // style={{ justifyContent: "center", alignItems: "center" }}
       >
-        <View style={styles.logo}>
-          <Image
-            style={{ height: HEIGHT * 0.15, width: WIDTH * 0.85 }}
-            resizeMode="contain"
-            source={require("../../assets/Launch_Logo.png")}
-          />
-        </View>
-        <Animated.View
-          style={{
-            opacity: fadeAnim,
-            alignItems: "center",
-          }}
-        >
-          <Text style={styles.animatedText}>Explore More. Stress Less</Text>
-        </Animated.View>
-
-        <Container>
-          <TouchableOpacity
-            onPress={modalButtonHelper}
-            style={[FIELD_VALUE_CONTAINER, { width: 65, marginBottom: 5 }]}
+        <View style={{ justifyContent: "center", alignItems: "center",flex:1 }}>
+          <View
+            style={{
+              // loader container
+              justifyContent: "center",
+              alignItems: "center",
+            }}
           >
-            <Text>{userType}</Text>
-          </TouchableOpacity>
-          <MenuModal
-            title="Select User Type"
-            setCardTypeHelper={setUserHelper}
-            showModal={showModalUser}
-            modalView={userModalView}
-            data={USERTYPES}
-          />
-
-          <View style={[styles.container_Email_Password, { marginBottom: 5 }]}>
-          <Icon name="user" color={'black'} size={size} style={{marginRight:10}} />
-            <TextInput
-              value={email}
-              onChangeText={(email) => setEmail(email)}
-              placeholder=" Email"
-              style={[FIELD_VALUE_CONTAINER, { width: "80%" }]}
-            />
+            <Loader />
           </View>
-
-          <View style={styles.container_Email_Password}>
-          <Icon name="lock" color={'black'} size={size} style={{marginRight:10}} />
-            <TextInput
-              value={password}
-              onChangeText={(password) => setPassword(password)}
-              secureTextEntry={true}
-              placeholder=" Password"
-              style={[FIELD_VALUE_CONTAINER, { width: "80%" }]}
-            />
-          </View>
-        </Container>
-        <View style={styles.buttonsContainer}>
-          <BUTTON onPress={loginWithEmail} text="LOG IN" />
-          <BUTTON
-            onPress={() => props.navigation.navigate("signUpDetails")}
-            text="SIGN UP"
-          />
-
-          <TouchableOpacity
-            onPress={() => props.navigation.navigate("forgotPassword")}
+          <Animated.View
+            style={{
+              opacity: fadeAnim,
+              alignItems: "center",
+            }}
           >
-            <Text style={[BUTTON_TEXT, { color: "black" }]}>
-              Forgot Password?
-            </Text>
-          </TouchableOpacity>
+            <Text style={styles.animatedText}>Explore More. Stress Less</Text>
+          </Animated.View>
+
+          <Container>
+            <TouchableOpacity
+              onPress={modalButtonHelper}
+              style={[FIELD_VALUE_CONTAINER, { width: 65, marginBottom: 5 }]}
+            >
+              <Text>{userType}</Text>
+            </TouchableOpacity>
+            <MenuModal
+              title="Select User Type"
+              setCardTypeHelper={setUserHelper}
+              showModal={showModalUser}
+              modalView={userModalView}
+              data={USERTYPES}
+            />
+
+            <View
+              style={[styles.container_Email_Password, { marginBottom: 5 }]}
+            >
+              <Icon
+                name="user"
+                color={"black"}
+                size={size}
+                style={{ marginRight: 10 }}
+              />
+              <TextInput
+                value={email}
+                onChangeText={(email) => setEmail(email)}
+                placeholder=" Email"
+                style={[FIELD_VALUE_CONTAINER, { width: "80%" }]}
+              />
+            </View>
+
+            <View style={styles.container_Email_Password}>
+              <Icon
+                name="lock"
+                color={"black"}
+                size={size}
+                style={{ marginRight: 10 }}
+              />
+              <TextInput
+                value={password}
+                onChangeText={(password) => setPassword(password)}
+                secureTextEntry={true}
+                placeholder=" Password"
+                style={[FIELD_VALUE_CONTAINER, { width: "80%" }]}
+              />
+            </View>
+          </Container>
+          <View style={styles.buttonsContainer}>
+            <BUTTON onPress={loginWithEmail} text="LOG IN" />
+            <BUTTON
+              onPress={() => props.navigation.navigate("signUpDetails")}
+              text="SIGN UP"
+            />
+
+            <TouchableOpacity
+              onPress={() => props.navigation.navigate("forgotPassword")}
+            >
+              <Text style={[BUTTON_TEXT, { color: "black" }]}>
+                Forgot Password?
+              </Text>
+            </TouchableOpacity>
+          </View>
         </View>
       </KeyboardAwareScrollView>
     </SafeAreaView>
@@ -226,7 +242,6 @@ const styles = StyleSheet.create({
     fontSize: 15,
   },
 });
-
 
 function mapStateToProps({ auth }) {
   return { token: auth.token };

@@ -3,20 +3,12 @@ import { View, AsyncStorage, Image } from "react-native";
 import _ from "lodash";
 // import { AppLoading } from "expo";
 import { HEIGHT, WIDTH } from "../../components/Items/";
+import Loader from '../../components/Loader'
 
-import Slides from "../../components/Slides";
-
-const SLIDE_DATA = [
-  { text: "Welcome to Laundr", color: "#0000f4" },
-  {
-    text: "Use is app to save item",
-    color: "#010088",
-  },
-  { text: "Point and scan to get started!", color: "#0000cf" },
-];
 
 const AuthScreen = (props) => {
   const [token, setToken] = useState(null);
+  
 
   useEffect(() => {
     checkToken();
@@ -24,10 +16,10 @@ const AuthScreen = (props) => {
 
   const checkToken = async () => {
     console.log("Checking Token");
-    let token = await AsyncStorage.getItem("email_token");
+    let token = await AsyncStorage.getItem("token");
     if (token) {
       console.log("Token is present");
-      props.navigation.navigate("home");
+      // props.navigation.navigate("home");
       setToken(token);
     } else {
       console.log("Token is not present");
@@ -35,15 +27,11 @@ const AuthScreen = (props) => {
     }
   };
 
-  const onSlidesComplete = () => {
-    props.navigation.navigate("welcome");
-  };
-
-  // if (_.isNull(token)) {
-  //   console.log("_.isNull(token): ", _.isNull(token));
-  //   return <AppLoading />;
-  // }
-  console.log("After _.isNull(token) check");
+  if (_.isNull(token)) {
+    console.log("_.isNull(token): ", _.isNull(token));
+    return <Loader />;
+  }
+  console.log("After LOADER");
   console.log("_.isNull(token): ", _.isNull(token));
 
 
