@@ -1,5 +1,4 @@
-// WEIRD BUG PRESENT
-// color={itemsIconColor[item.name]['iconColorDisplay']}
+// MAKE A LOADING SCREEN
 import React, {useEffect, useState} from 'react';
 import {
   StyleSheet,

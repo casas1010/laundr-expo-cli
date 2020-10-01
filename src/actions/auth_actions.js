@@ -8,8 +8,11 @@ import {
 import {FAKE_DATA} from '../components/Data/';
 
 // regular syntax
-export const emailLogOut = () => {
+export const emailLogOut = (props) => {
   // perform action
+  props.navigate('Home')
+
+  props.navigate('welcome')
   return {
     type: LOG_OUT,
   };

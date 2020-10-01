@@ -19,6 +19,7 @@ import { Entypo } from "@expo/vector-icons";
 
 import Icon from "react-native-vector-icons/FontAwesome";
 import { HEIGHT, WIDTH, SHADOW } from "../../components/Items/";
+import {GOOGLE_MAPS_KEY} from '../../../key/';
 
 const HomeScreen = (props) => {
   const [email, setEmail] = useState("");
@@ -27,16 +28,16 @@ const HomeScreen = (props) => {
   const [initialRegion, setInitialRegion] = useState();
   const [address, setAddress] = useState();
 
-  function getData(lat, long) {
-    Geocoder.init("AIzaSyD0MtG3cTrc_rEx7fQLRZIDCZgfiJkwrW8"); // use a valid API key
+  // function getData(lat, long) {
+  //   Geocoder.init(GOOGLE_MAPS_KEY); // use a valid API key
 
-    Geocoder.from(lat, long)
-      .then((json) => {
-        var addressComponent = json.results[0].address_components[0];
-        console.log(addressComponent);
-      })
-      .catch((error) => console.warn(error));
-  }
+  //   Geocoder.from(lat, long)
+  //     .then((json) => {
+  //       var addressComponent = json.results[0].address_components[0];
+  //       console.log(addressComponent);
+  //     })
+  //     .catch((error) => console.warn(error));
+  // }
 
   // gets position code
   useEffect(() => {
@@ -65,7 +66,7 @@ const HomeScreen = (props) => {
 
         setInitialRegion(region);
       },
-      (error) => console.log(error),
+      (error) => console.log('ERROR getting location',error),
       {
         enableHighAccuracy: true,
         timeout: 20000,

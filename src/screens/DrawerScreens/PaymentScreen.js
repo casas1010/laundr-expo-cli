@@ -9,7 +9,7 @@ import {
 } from "react-native";
 import { connect } from "react-redux";
 import * as actions from "../../actions";
-import { STRIPE_FRONT_KEY } from "../../components/key/";
+import { STRIPE_FRONT_KEY } from "../../../key";
 import stripe from "tipsi-stripe";
 stripe.setOptions({
   publishableKey: STRIPE_FRONT_KEY,
