@@ -7,27 +7,27 @@ add a link to the website for terms below the earn with laundr button
 
 */
 
-import React, {useEffect, useState} from 'react';
-import {View, StyleSheet, Text} from 'react-native';
-import {DrawerContentScrollView, DrawerItem} from '@react-navigation/drawer';
-import Icon from 'react-native-vector-icons/FontAwesome';
-
+import React, { useEffect, useState } from "react";
+import { View, StyleSheet, Text,Linking } from "react-native";
+import { DrawerContentScrollView, DrawerItem } from "@react-navigation/drawer";
+import Icon from "react-native-vector-icons/FontAwesome";
+// import { FontAwesome } from '@expo/vector-icons';
 //
-import * as actions from '../../actions';
-import {connect} from 'react-redux';
+import * as actions from "../../actions";
+import { connect } from "react-redux";
 
-import {FIELD_VALUE_FONT_SIZE} from '../../components/Items';
+import { FIELD_NAME_FONT_SIZE } from "../../components/Items";
 
 const DrawerContent = (props) => {
-  const [color, setColor] = useState('#01c9e2');
-  const [size, setSize] = useState(FIELD_VALUE_FONT_SIZE);
+  const [color, setColor] = useState("#01c9e2");
+  const [size, setSize] = useState(FIELD_NAME_FONT_SIZE * 1.2);
 
   useEffect(() => {
-    console.log('Drawer loaded');
+    console.log("Drawer loaded");
     // console.log(props);
   }, []);
   return (
-    <View style={{flex: 1}}>
+    <View style={{ flex: 1 }}>
       <DrawerContentScrollView {...props}>
         <View style={styles.drawerContent}>
           <View style={styles.drawerSection}>
@@ -35,49 +35,49 @@ const DrawerContent = (props) => {
               icon={() => <Icon name="home" color={color} size={size} />}
               label="Home"
               onPress={() => {
-                props.navigation.navigate('Home');
+                props.navigation.navigate("Home");
               }}
             />
             <DrawerItem
               icon={() => <Icon name="gear" color={color} size={size} />}
               label="Account"
               onPress={() => {
-                props.navigation.navigate('Account');
+                props.navigation.navigate("Account");
               }}
             />
             <DrawerItem
               icon={() => <Icon name="user-circle" color={color} size={size} />}
               label="History"
               onPress={() => {
-                props.navigation.navigate('History');
+                props.navigation.navigate("History");
               }}
             />
             <DrawerItem
               icon={() => <Icon name="bell" color={color} size={size} />}
               label="Notifications"
               onPress={() => {
-                props.navigation.navigate('Notifications');
+                props.navigation.navigate("Notifications");
               }}
             />
             <DrawerItem
               icon={() => <Icon name="users" color={color} size={size} />}
               label="Referrals"
               onPress={() => {
-                props.navigation.navigate('Referrals');
+                props.navigation.navigate("Referrals");
               }}
             />
             <DrawerItem
               icon={() => <Icon name="credit-card" color={color} size={size} />}
               label="Payment"
               onPress={() => {
-                props.navigation.navigate('Payment');
+                props.navigation.navigate("Payment");
               }}
             />
             <DrawerItem
               icon={() => <Icon name="paper-plane" color={color} size={size} />}
               label="Subscriptions"
               onPress={() => {
-                props.navigation.navigate('Subscriptions');
+                props.navigation.navigate("Subscriptions");
               }}
             />
             <DrawerItem
@@ -86,14 +86,15 @@ const DrawerContent = (props) => {
                   style={{
                     width: size,
 
-                    alignItems: 'center',
-                  }}>
+                    alignItems: "center",
+                  }}
+                >
                   <Icon name="question" color={color} size={size} />
                 </View>
               )}
               label="Help"
               onPress={() => {
-                props.navigation.navigate('Help');
+                props.navigation.navigate("Help");
               }}
             />
           </View>
@@ -101,15 +102,20 @@ const DrawerContent = (props) => {
       </DrawerContentScrollView>
       <View style={styles.bottomDrawerSection}>
         <DrawerItem
-          icon={() => (
-            <Icon name="money" color={'green'} size={size} />
-
-          )}
+          icon={() => <Icon name="money" color={"green"} size={size} />}
           label="Earn with Laundr"
           onPress={() => {
-            console.log('sign out');
-            console.log(props)
+            console.log("sign out");
+            console.log(props);
             props.emailLogOut();
+          }}
+        />
+       
+        <DrawerItem
+          icon={() => <Icon name="legal" size={size} color="black" />}
+          label="Terms of Service"
+          onPress={() => {
+            Linking.openURL('https://www.laundr.io/termsofservice/')
           }}
         />
       </View>
@@ -127,7 +133,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 16,
     marginTop: 3,
-    fontWeight: 'bold',
+    fontWeight: "bold",
   },
   caption: {
     fontSize: 14,
@@ -135,16 +141,16 @@ const styles = StyleSheet.create({
   },
   row: {
     marginTop: 20,
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
   },
   section: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
     marginRight: 15,
   },
   paragraph: {
-    fontWeight: 'bold',
+    fontWeight: "bold",
     marginRight: 3,
   },
   drawerSection: {
@@ -152,12 +158,12 @@ const styles = StyleSheet.create({
   },
   bottomDrawerSection: {
     marginBottom: 15,
-    borderTopColor: '#f4f4f4',
+    borderTopColor: "#f4f4f4",
     borderTopWidth: 1,
   },
   preference: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
+    flexDirection: "row",
+    justifyContent: "space-between",
     paddingVertical: 12,
     paddingHorizontal: 16,
   },
