@@ -25,7 +25,7 @@ import { FAKE_DATA } from "../components/Data/";
 // };
 
 
-export const emailLogOut = () => async (dispatch) => {
+export const emailLogOut = (props) => async (dispatch) => {
   // get the fb token if it is there
   await AsyncStorage.removeItem("token");
   console.log('token has been cleared from phone')

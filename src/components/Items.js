@@ -44,6 +44,7 @@ export const FIELD_VALUE_CONTAINER = {
 export const BUTTON_CONTAINER = {
   alignItems: "center",
   backgroundColor: "#01c9e2",
+  // backgroundColor:'red',
   margin: 10,
   width: "80%",
   borderRadius: 20,

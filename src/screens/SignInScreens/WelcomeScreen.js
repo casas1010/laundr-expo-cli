@@ -117,7 +117,9 @@ const WelcomeScreen = (props) => {
         showsVerticalScrollIndicator={false}
         // style={{ justifyContent: "center", alignItems: "center" }}
       >
-        <View style={{ justifyContent: "center", alignItems: "center",flex:1 }}>
+        <View
+          style={{ justifyContent: "center", alignItems: "center", flex: 1 }}
+        >
           <View
             style={{
               // loader container
@@ -228,6 +230,9 @@ const styles = StyleSheet.create({
   },
   buttonsContainer: {
     alignItems: "center",
+    justifyContent: "center",
+    width:WIDTH,
+    // backgroundColor:'green'
   },
   button: {
     alignItems: "center",
